@@ -1,19 +1,16 @@
 const bodyParser = require('body-parser');
 const express = require('express');
+const routes = require('./routes/routes');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.get('/', (req, res, next) => {
-  const message =
-    '<form action="test" method="post">  <input type="text" name="fname"><br> </form>';
-  res.send(message).status(200);
-});
+app.use(routes);
 
-app.post('/test', (req, res) => {
-  console.log(req.body.fname);
-  res.sendStatus(200);
+app.use((req, res) => {
+  res.sendStatus(404);
 });
 
 app.listen(3000, () => {
