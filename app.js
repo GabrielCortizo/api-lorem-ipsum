@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const routes = require('./routes/routes');
+const { mongoConnect } = require('./util/database');
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use((req, res) => {
   res.sendStatus(404);
 });
 
-app.listen(3000, () => {
-  console.log('Express intro running');
+mongoConnect(() => {
+  app.listen(3000, () => {
+    console.log('Express intro running');
+  });
 });

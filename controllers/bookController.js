@@ -1,9 +1,24 @@
-function getBook(req, res) {
-  res.sendStatus(404);
+const Book = require('../models/book');
+const { getDB } = require('../util/database');
+
+async function getBook(req, res) {
+  const { name } = req.query;
+  console.log(name);
+  const db = getDB();
+
+  try {
+    const items = await db.collection('books').find({ name }).toArray();
+    res.json(items);
+  } catch (err) {
+    res.sendStatus(500);
+  }
 }
 
 function postBook(req, res) {
-  console.log(req.body);
+  const { name, isbn13, author, genres } = req.body;
+  const book = new Book(name, isbn13, author, genres);
+
+  book.save();
   res.sendStatus(200);
 }
 
