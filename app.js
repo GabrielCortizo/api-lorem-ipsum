@@ -1,7 +1,13 @@
-const bodyParser = require('body-parser');
+const dotenv = require('dotenv');
 const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
 const routes = require('./routes/routes');
-const { mongoConnect } = require('./util/database');
+
+dotenv.config({
+  path: './.env',
+});
 
 const app = express();
 
@@ -14,8 +20,13 @@ app.use((req, res) => {
   res.sendStatus(404);
 });
 
-mongoConnect(() => {
-  app.listen(3000, () => {
-    console.log('Express intro running');
+mongoose
+  .connect(process.env.MONGO_DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    app.listen(process.env.APP_PORT, () => {
+      console.log('node running in port', process.env.APP_PORT);
+    });
   });
-});

@@ -1,22 +1,28 @@
-const { getDB } = require('../util/database');
+const mongoose = require('mongoose');
 
-class Writer {
-  constructor(name, birth) {
-    this.name = name;
-    this.birth = birth;
-  }
+const { Schema } = mongoose;
+const writerSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  birth: {
+    date: { type: Date },
+    address: {
+      country: String,
+      state: String,
+    },
+  },
+  genres: {
+    type: [String],
+    required: true,
+  },
+  books: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Book',
+    },
+  ],
+});
 
-  save() {
-    const db = getDB();
-    db.collection('writers')
-      .insertOne(this)
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-}
-
-module.exports = Writer;
+module.exports = mongoose.model('Writer', writerSchema);
