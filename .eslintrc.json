@@ -14,6 +14,7 @@
     "ecmaVersion": 2018
   },
   "rules": {
+    "no-use-before-define": "warn",
     "no-underscore-dangle": "off",
     "prettier/prettier": "error",
     "no-unused-vars": "warn",
