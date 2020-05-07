@@ -5,6 +5,10 @@ class WriterDataAcess {
     this.Model = model;
   }
 
+  createWriter(writer) {
+    return this.Model.create(writer);
+  }
+
   findByID(id) {
     return this.Model.findById(id, '-__v').populate(
       'books',
@@ -12,8 +16,8 @@ class WriterDataAcess {
     );
   }
 
-  createWriter(writer) {
-    return this.Model.create(writer);
+  deleteByID(id) {
+    return this.Model.findByIdAndDelete(id);
   }
 }
 const writerDataAcessInstance = new WriterDataAcess(Writer);

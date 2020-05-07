@@ -9,11 +9,9 @@ const bookControllerValidation = require('../controllers/book/validation');
 const writerControllers = require('../controllers/writer/writerController');
 const writerControllerValidation = require('../controllers/writer/validation');
 
-const { authentication } = require('../middlewares/auth');
+const { authentication } = require('../../middlewares/auth');
 
 const router = express.Router();
-
-// router.get('/getToken', generateToken);
 
 router.post(
   '/sign-up',

@@ -7,7 +7,7 @@ class UserDataAcess {
   }
 
   async isUsernameUnique(username) {
-    const numberOfDocuments = await this.model.count(username);
+    const numberOfDocuments = await this.model.countDocuments(username);
 
     return numberOfDocuments === 0;
   }

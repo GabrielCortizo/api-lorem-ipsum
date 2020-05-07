@@ -25,6 +25,10 @@ class BookDataAcess {
   findByID(id) {
     return this.Model.find({ _id: id });
   }
+
+  deleteBookByID(id) {
+    return this.Model.findByIdAndDelete(id);
+  }
 }
 
 const bookDataAcessInstance = new BookDataAcess(Book);

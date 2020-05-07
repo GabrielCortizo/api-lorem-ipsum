@@ -8,7 +8,7 @@ exports.postBook = () => {
     body('isbn13', 'isbn13 is a required field and must be a String')
       .exists()
       .isString(),
-    body('writer', 'writer is a required field and must be a String')
+    body('writer_id', 'writer is a required field and must be a String')
       .exists()
       .isString(),
     body('genres', 'genres is a required field, and must be a non empty Array')

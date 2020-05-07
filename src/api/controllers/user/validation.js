@@ -13,7 +13,7 @@ const USER_CONSTRAINTS = {
   },
 };
 
-exports.userSignUp = () => {
+const userSignUp = () => {
   return [
     body(
       'username',
@@ -32,7 +32,7 @@ exports.userSignUp = () => {
   ];
 };
 
-exports.userSignIn = () => {
+const userSignIn = () => {
   return [
     body('username', 'username is a required field of type string')
       .exists()
@@ -42,3 +42,5 @@ exports.userSignIn = () => {
       .isString(),
   ];
 };
+
+module.exports = { userSignIn, userSignUp, USER_CONSTRAINTS };
