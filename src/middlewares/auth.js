@@ -22,7 +22,10 @@ function retrieveBearerTokenFromRequest(req) {
 }
 
 function generateNewToken(data) {
-  return jwt.sign({ data }, process.env.JWT_TOKEN_SECRET, { expiresIn: 60 });
+  return jwt.sign({ data }, process.env.JWT_TOKEN_SECRET, {
+    // eslint-disable-next-line radix
+    expiresIn: parseInt(process.env.JWT_TOKEN_EXPIRATION_TIME_IN_SECONDS),
+  });
 }
 
 module.exports = { generateNewToken, authentication };

@@ -7,7 +7,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    app.listen(process.env.APP_PORT, () => {
+    app.listen(process.env.PORT || 3000, () => {
       console.log('node running in port', process.env.APP_PORT);
     });
   });
